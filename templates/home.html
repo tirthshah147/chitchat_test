@@ -1,1 +1,62 @@
+<html>
+  <head lang="en">
+  <meta charset="UTF-8">
+  <script language="JavaScript">
+    function showmsg() {
+       $.post("/Untitled.ipynb"),{
+         text:
+       }
+    document.getElementById('display').innerHTML=document.getElementById("user_input").value;
+    }
+  </script>
 
+  </head>
+<body>
+
+  <form>
+    <label>Enter</label>
+    <input type="text" name="message" id="user_input">
+
+  </form>
+
+  <input type="submit" onclick="showmsg();"><br/>
+  <label>Your input: </label>
+  <p><span id='display'></span></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+$('#target').on('submit', function(e){
+    e.preventDefault();
+
+    const input_message = $('#input_message').val()
+    // return if the user does not enter any text
+    if (!input_message) {
+        return
+    }
+
+    $('.chatbotui').append(`
+        <div class="user">
+            ${input_message}
+        </div>
+    `)
+
+    // loading
+    $('.chatbotui').append(`
+        <div class="loading">
+            <b>...</b>
+        </div>
+    `)
+
+    // clear the text input
+    $('#input_message').val('')
+
+    // send the message
+    submit_message(input_message)
